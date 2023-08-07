@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireSDK-.NET", "FireSDK-.NET.csproj", "{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FireSDK-.NET", "FireSDK-.NET.csproj", "{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "..\Demo\Demo.csproj", "{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

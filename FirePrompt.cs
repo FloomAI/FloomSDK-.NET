@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -34,30 +35,36 @@ public class FirePrompt
     /// <summary>
     /// Fire (Invoke) a pipeline according to its configurations and dynamic parameters you provide
     /// </summary>
-    /// <param name="id">Pipeline ID</param>
+    /// <param name="pipelineId">Pipeline ID</param>
+    /// <param name="chatId">Chat ID, an auto-generated OR self-generated identifier that identifies the chat/converation unique session, for memory, history and continuation purposes.</param>
     /// <param name="input">User input</param>
     /// <param name="variables">Other variables that will compile with both System and User inputs</param>
-    public async Task<object> FireAsync(
-    string id,
-    object input = null,
-    Dictionary<string, string> variables = null)
+    public async Task<FireResponse> FireAsync(
+        string pipelineId,
+        string chatId = "",
+        object input = null,
+        Dictionary<string, string> variables = null,
+        DataTransferType dataTransfer = DataTransferType.Base64
+    )
     {
-        using (HttpClient httpClient = new HttpClient())
+        using (HttpClient httpClient = new HttpClient() { Timeout = new TimeSpan(0,0,160) })
         {
             httpClient.DefaultRequestHeaders.Add("Api-Key", _apiKey);
 
             string url = $"{_url}/Fire";
 
             // Create the object to be sent
-            var payload = new
+            FireRequest fireRequest = new FireRequest()
             {
-                id = id,
-                input = input,
-                variables = variables
+                pipelineId = pipelineId,
+                chatId = chatId,
+                input = (string)input,
+                variables = variables,
+                dataTransfer = dataTransfer
             };
 
             // Serialize the object to JSON
-            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
+            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(fireRequest);
             StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
             // Send the POST request with the JSON content
@@ -65,9 +72,9 @@ public class FirePrompt
             response.EnsureSuccessStatusCode();
 
             string responseString = await response.Content.ReadAsStringAsync();
+            FireResponse fireResponse = JsonConvert.DeserializeObject<FireResponse>(responseString);
 
-            return responseString;
+            return fireResponse;
         }
     }
 }
-

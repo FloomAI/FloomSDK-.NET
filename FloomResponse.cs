@@ -1,4 +1,4 @@
-﻿public class FireResponse
+﻿public class FloomResponse
 {
     public string messageId { get; set; } = "";
     public string chatId { get; set; } = "";

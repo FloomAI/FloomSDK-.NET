@@ -4,42 +4,30 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-public class FirePrompt
+public class FloomClient
 {
     private readonly string _url;
     private readonly string _apiKey;
 
     /// <summary>
-    /// Creates a new FirePrompt instance, using credentials from Environment Variables.
+    /// Creates a new FloomClient instance, using provided apiKey.
     /// </summary>
-    public FirePrompt()
+    /// <param name="endpoint">The Floom's endpoint (URL), i.e. http://10.0.0.3:5050</param>
+    /// <param name="apiKey"></param>
+    public FloomClient(string endpoint, string apiKey)
     {
-        _url = Environment.GetEnvironmentVariable("FIRE_ENGINE_URL") ?? "";
-        _apiKey = Environment.GetEnvironmentVariable("FIRE_ENGINE_API_KEY") ?? "";
-
-        if (string.IsNullOrEmpty(_url) || string.IsNullOrEmpty(_apiKey))
-        {
-            throw new InvalidOperationException("FIRE_ENGINE_URL and FIRE_ENGINE_API_KEY environment variables must be set.");
-        }
-    }
-
-    /// <summary>
-    /// Creates a new FirePrompt instance, using provided credentials.
-    /// </summary>
-    public FirePrompt(string url, string apiKey)
-    {
-        _url = url;
+        _url = endpoint;
         _apiKey = apiKey;
     }
 
     /// <summary>
-    /// Fire (Invoke) a pipeline according to its configurations and dynamic parameters you provide
+    /// Floom (Invoke) a pipeline according to its configurations and dynamic parameters you provide
     /// </summary>
     /// <param name="pipelineId">Pipeline ID</param>
     /// <param name="chatId">Chat ID, an auto-generated OR self-generated identifier that identifies the chat/converation unique session, for memory, history and continuation purposes.</param>
     /// <param name="input">User input</param>
     /// <param name="variables">Other variables that will compile with both System and User inputs</param>
-    public async Task<FireResponse> FireAsync(
+    public async Task<FloomResponse> Run(
         string pipelineId,
         string chatId = "",
         object input = null,
@@ -51,10 +39,10 @@ public class FirePrompt
         {
             httpClient.DefaultRequestHeaders.Add("Api-Key", _apiKey);
 
-            string url = $"{_url}/Fire";
+            string url = $"{_url}/v1/Pipelines/Run";
 
             // Create the object to be sent
-            FireRequest fireRequest = new FireRequest()
+            FloomRequest floomRequest = new FloomRequest()
             {
                 pipelineId = pipelineId,
                 chatId = chatId,
@@ -64,7 +52,7 @@ public class FirePrompt
             };
 
             // Serialize the object to JSON
-            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(fireRequest);
+            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(floomRequest);
             StringContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
             // Send the POST request with the JSON content
@@ -72,9 +60,9 @@ public class FirePrompt
             response.EnsureSuccessStatusCode();
 
             string responseString = await response.Content.ReadAsStringAsync();
-            FireResponse fireResponse = JsonConvert.DeserializeObject<FireResponse>(responseString);
+            FloomResponse floomResponse = JsonConvert.DeserializeObject<FloomResponse>(responseString);
 
-            return fireResponse;
+            return floomResponse;
         }
     }
 }

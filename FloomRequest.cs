@@ -1,4 +1,4 @@
-﻿public class FireRequest
+﻿public class FloomRequest
 {
     public string pipelineId { get; set; } //Pipeline ID
     public string chatId { get; set; } = ""; //Chat ID

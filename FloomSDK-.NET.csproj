@@ -1,14 +1,50 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>FireSDK_.NET</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>FireSDK_.NET</RootNamespace>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->
+		<!--<Nullable>enable</Nullable>-->
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Floom</PackageId>
+		<Title>Floom SDK</Title>
+		<Authors>Floom.AI</Authors>
+		<LangVersion>7.3</LangVersion>
+		<PackageIcon>icon.png</PackageIcon>
+		<RepositoryUrl>https://github.com/FloomAI/FloomSDK-.NET</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageReleaseNotes>initial release</PackageReleaseNotes>
+		<PackageTags>ai, genai, generative ai, floom, llm</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<Description>Floom orchestrates and executes Generative AI pipelines,
+Empowering Developers and DevOps to focus on what matters (learn more on https://floom.ai).
+</Description>
+		<Copyright>Floom</Copyright>
+		<PackageProjectUrl>https://github.com/FloomAI/Floom</PackageProjectUrl>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="D:\OneDrive\Documents\Floom\SDK Material\nuget\icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

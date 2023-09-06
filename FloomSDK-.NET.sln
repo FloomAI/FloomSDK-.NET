@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloomSDK-.NET", "FloomSDK-.NET.csproj", "{4BE0644B-A1D6-4B6D-9816-D1766B9B95DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "..\Demo\Demo.csproj", "{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "..\Demo\Example.csproj", "{A5D41BFB-EFBA-479A-9D9E-E0531BB5534E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
